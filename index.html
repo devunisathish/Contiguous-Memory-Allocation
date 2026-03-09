@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Memory Management Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Operating System Memory Management Simulator</h1>
+<p>Interactive visualization of memory allocation techniques</p>
+</header>
+
+<div class="tabs">
+<button onclick="showSection('contiguous')">Contiguous Allocation</button>
+<button onclick="showSection('strategy')">Allocation Strategies</button>
+</div>
+
+<!-- ================= CONTIGUOUS ================= -->
+
+<section id="contiguous" class="section">
+
+<h2>Contiguous Memory Allocation</h2>
+
+<div class="card">
+
+<label>Partition Type</label>
+<select id="partitionType" onchange="initContiguous()">
+<option value="fixed">Fixed Partition</option>
+<option value="variable">Variable Partition</option>
+</select>
+
+<div class="inputRow">
+<input id="pname" placeholder="Process Name">
+<input id="psize" type="number" placeholder="Process Size">
+<button onclick="addProcess()">Add Process</button>
+</div>
+
+<div class="buttons">
+<button onclick="allocateContiguous()">Allocate</button>
+<button onclick="compact()">Compaction</button>
+<button onclick="resetContiguous()">Reset</button>
+</div>
+
+</div>
+
+<h3>Process Queue</h3>
+<div id="queue" class="queue"></div>
+
+<h3>RAM</h3>
+<div id="ram" class="ram"></div>
+
+<div class="info">
+<b>Explanation</b>
+<ul>
+<li>Fixed Partition: RAM divided into equal blocks.</li>
+<li>Variable Partition: Memory created dynamically.</li>
+<li>External fragmentation occurs when free spaces are scattered.</li>
+<li>Compaction rearranges processes to remove holes.</li>
+</ul>
+</div>
+
+</section>
+
+<!-- ================= STRATEGIES ================= -->
+
+<section id="strategy" class="section hidden">
+
+<h2>Allocation Strategies</h2>
+
+<div class="card">
+
+<label>Select Strategy</label>
+
+<select id="strategyType">
+<option value="first">First Fit</option>
+<option value="best">Best Fit</option>
+<option value="worst">Worst Fit</option>
+</select>
+
+<div class="inputRow">
+<input id="spname" placeholder="Process Name">
+<input id="spsize" type="number" placeholder="Process Size">
+<button onclick="addStrategyProcess()">Add Process</button>
+</div>
+
+<div class="buttons">
+<button onclick="allocateStrategy()">Allocate</button>
+<button onclick="resetStrategy()">Reset</button>
+</div>
+
+</div>
+
+<h3>Process Queue</h3>
+<div id="squeue" class="queue"></div>
+
+<h3>Memory Blocks</h3>
+<div id="blocks" class="ram"></div>
+
+<div class="info">
+<b>Strategy Logic</b>
+<ul>
+<li><b>First Fit</b>: Choose first available block large enough.</li>
+<li><b>Best Fit</b>: Choose smallest suitable block.</li>
+<li><b>Worst Fit</b>: Choose largest block.</li>
+</ul>
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
